@@ -5,6 +5,7 @@
 
 #Requires pyCrypto
 from Crypto.Cipher import AES
+from PBKDF2 import PBKDF2
 import os
 
 LOCATION = '/usr/bin/' #location where the journal is stored
