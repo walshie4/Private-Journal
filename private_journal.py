@@ -5,7 +5,7 @@
 
 #Requires pyCrypto
 from Crypto.Cipher import AES
-from PBKDF2 import PBKDF2
+from pbkdf2 import crypt
 import os
 
 LOCATION = '/usr/bin/' #location where the journal is stored
@@ -36,4 +36,10 @@ def unpad_data(data): #remove padding to original state
     else:
         return data
 
+def isCorrectPassphrase(passphrase):
+    hashed = crypt(secret) #need to add logic to keep this hidden
+    if hashed == crypt(passphrase, hashed):
+        return True
+    else
+        return False
 
