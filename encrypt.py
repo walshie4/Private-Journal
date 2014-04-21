@@ -22,7 +22,7 @@ BAD_HMAC = 1
 BAD_ARGS = 2
 
 
-def make_keys(password, salt=None, iterations=100000):
+def make_keys(password, salt=None, iterations=1000000):
     """Generates two 128-bit keys from the given password using
        PBKDF2-SHA256.
        We use PBKDF2-SHA256 because we want the native output of PBKDF2 to be

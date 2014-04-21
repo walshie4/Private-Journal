@@ -5,6 +5,7 @@
 
 #Requires pyCrypto
 import os
+import encrypt#import encrypt.py
 
 LOCATION = '/usr/bin/' #location where the journal is stored
 
