@@ -12,7 +12,7 @@ import time
 from shutil import move
 
 if __name__ == "__main__":
-    print("WARNING: Killing execution at any point, (or encountering an error) may cause your journal\n"
+    print("\nWARNING: Killing execution at any point, (or encountering an error) may cause your journal\n"
         + "to be left on your drive unencrypted. If the program exits before stating the journal was\n"
         + "re-encrypted please check to see if it encrypted. If an error caused the exit please report\n"
         + "it so I can fix it ASAP. Sorry for any inconvience, hope you enjoy this script! :D\n")
@@ -26,9 +26,13 @@ if __name__ == "__main__":
         os.system("touch " + location) #create new journal
         encrypted = False
     input_file = location
+    iterations = input("Please enter then number of iterations you would like to use when encrypting your\n"
+                    +  "journal, or press enter to use 1,000,000")
+    if iterations = '':
+        iterations = 1000000
     if encrypted: #decrypt for writing
         print("Decrypting for appending")
-        encrypt.main(input_file, "d", 1000000, "output")#an error here probably means it's a malformed file
+        encrypt.main(input_file, "d", iterations, "output")#an error here probably means it's a malformed file
     print("Journal is ready, input your entry (press crtl-d on a newline when done)")
     entry = ''
     for line in fileinput.input():
@@ -37,7 +41,7 @@ if __name__ == "__main__":
         out.write(time.strftime("%c") + "\n\n")
         out.write(entry + "\n")
     print("Encrypting journal...(Please wait)")
-    encrypt.main(input_file, "e", 1000000, location + ".tmp")#re-encrypt journal
+    encrypt.main(input_file, "e", iterations, location + ".tmp")#re-encrypt journal
     os.remove(location)
     move(location + ".tmp", location)#replace location(unencrypted) with location.tmp(encrypted)
     print("Exiting...")
