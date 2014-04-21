@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #Written by: Adam Walsh
 #Written on: 3/29/14
 #Maintained @ https://github.com/walshie4/Private-Journal
@@ -6,11 +6,32 @@
 #Requires pyCrypto
 import os
 import encrypt#import encrypt.py
-
-LOCATION = '/usr/bin/' #location where the journal is stored
-
+import sys
+import fileinput
+import time
 
 if __name__ == "__main__":
-    if os.path.isfile(LOCATION): #journal already exists
-        os.system("touch " + LOCATION) #create new journal
+    location = input("Please enter the location of the journal (parent directory containing journal,\n"
+                    +"it will be created if it does not exist\n-> ")
+    encrypted = True
+    if not location.endswith('/'):
+        location += '/'
+    location = location + 'journal'
+    if not os.path.isfile(location): #journal doesn't exist
+        os.system("touch " + location) #create new journal
+        encrypted = False
+    input_file = location
+    if encrypted: #decrypt for writing
+        print("Decrypting for appending")
+        encrypt.main(input_file, "decrypt", 1000000, "output")#an error here probably means it's a malformed file
+    print("Journal is ready, input your entry (press crtl-d on a newline when done)")
+    entry = ''
+    for line in fileinput.input():
+        entry += line
+    with open(input_file, "a") as out:#append the entry
+        out.write(time.strftime("%c") + "\n")
+        out.write(entry + "\n")
+    print("Encrypting journal")
+    encrypt.main(input_file, "encrypt", 1000000, "output")#re-encrypt journal
+    print("Exiting...")
 
