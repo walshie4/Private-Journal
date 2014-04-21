@@ -28,15 +28,15 @@ if __name__ == "__main__":
     input_file = location
     iterations = input("Please enter then number of iterations you would like to use when encrypting your\n"
                     +  "journal, or press enter to use 1,000,000")
-    if iterations = '':
+    if iterations == '':
         iterations = 1000000
-    if encrypted: #decrypt for writing
-        print("Decrypting for appending")
-        encrypt.main(input_file, "d", iterations, "output")#an error here probably means it's a malformed file
-    print("Journal is ready, input your entry (press crtl-d on a newline when done)")
+    print("P input your entry (press crtl-d twice on a newline when done)")
     entry = ''
     for line in fileinput.input():
         entry += line
+    if encrypted: #decrypt for writing
+        print("Decrypting for appending")
+        encrypt.main(input_file, "d", iterations, "output")#an error here probably means it's a malformed file
     with open(input_file, "a") as out:#append the entry
         out.write(time.strftime("%c") + "\n\n")
         out.write(entry + "\n")
