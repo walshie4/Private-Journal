@@ -116,7 +116,7 @@ def main(input_file, choice, iterations, output_file):
             output[key] = base64.b64encode(value).decode("utf-8")
         output_data = json.dumps(output).encode("utf-8")
 
-    else:
+    elif choice.lower() == 'd':
         data = json.loads(file_contents.decode("utf-8"))
         ciphertext = base64.b64decode(data["ciphertext"])
         iv = base64.b64decode(data["iv"])
@@ -130,6 +130,9 @@ def main(input_file, choice, iterations, output_file):
                   file=sys.stderr)
             return BAD_HMAC
         output_data = decrypt(ciphertext, aes_key, iv)
+    else:
+        print("Invalid input choice")
+        sys.exit()
 
     with open(output_file, "wb") as f:
         f.write(output_data)
