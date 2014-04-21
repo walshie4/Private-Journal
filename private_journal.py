@@ -15,7 +15,7 @@ if __name__ == "__main__":
     print("WARNING: Killing execution at any point, (or encountering an error) may cause your journal\n"
         + "to be left on your drive unencrypted. If the program exits before stating the journal was\n"
         + "re-encrypted please check to see if it encrypted. If an error caused the exit please report\n"
-        + "it so I can fix it ASAP. Sorry for any inconvience, hope you enjoy this script\n")
+        + "it so I can fix it ASAP. Sorry for any inconvience, hope you enjoy this script! :D\n")
     location = input("Please enter the location of the journal (parent directory containing journal,\n"
                     +"it will be created if it does not exist\n-> ")
     encrypted = True
