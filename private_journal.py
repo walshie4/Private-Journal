@@ -23,15 +23,15 @@ if __name__ == "__main__":
     input_file = location
     if encrypted: #decrypt for writing
         print("Decrypting for appending")
-        encrypt.main(input_file, "decrypt", 1000000, "output")#an error here probably means it's a malformed file
+        encrypt.main(input_file, "d", 1000000, "output")#an error here probably means it's a malformed file
     print("Journal is ready, input your entry (press crtl-d on a newline when done)")
     entry = ''
     for line in fileinput.input():
         entry += line
     with open(input_file, "a") as out:#append the entry
-        out.write(time.strftime("%c") + "\n")
+        out.write(time.strftime("%c") + "\n\n")
         out.write(entry + "\n")
-    print("Encrypting journal")
-    encrypt.main(input_file, "encrypt", 1000000, "output")#re-encrypt journal
+    print("Encrypting journal...(Please wait)")
+    encrypt.main(input_file, "e", 1000000, location + "temp")#re-encrypt journal
     print("Exiting...")
 
