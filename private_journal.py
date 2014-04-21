@@ -24,11 +24,11 @@ if __name__ == "__main__":
     location = location + 'journal'
     if not os.path.isfile(location): #journal doesn't exist
         os.system("touch " + location + ".tmp") #create new journal temp
-        encrypted = False
+        encrypted = False#no need to decrypt before appending
     iterations = input("Please enter then number of iterations you would like to use when encrypting your\n"
                     +  "journal, or press enter to use 1,000,000\n-> ")
     if iterations == '':
-        iterations = 1000000
+        iterations = 1000000#default iterations = 1 million
     print("Please input your entry (press crtl-d twice on a newline when done)")
     entry = ''
     for line in fileinput.input():
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         print("Decrypting for appending")
         encrypt.main(location, "d", iterations, location + ".tmp")#an error here probably means it's a malformed file
     with open(location + ".tmp", "a") as out:#append the entry
-        out.write(time.strftime("%c") + "\n\n")
+        out.write(time.strftime("%c") + "\n\n")#add timestamp to entry
         out.write(entry + "\n")
     input("If you would like to read your journal open the journal.tmp file, when done just press enter")
     print("Encrypting journal...(Please wait)")
