@@ -23,26 +23,25 @@ if __name__ == "__main__":
         location += '/'
     location = location + 'journal'
     if not os.path.isfile(location): #journal doesn't exist
-        os.system("touch " + location) #create new journal
+        os.system("touch " + location + ".tmp") #create new journal temp
         encrypted = False
-    input_file = location
     iterations = input("Please enter then number of iterations you would like to use when encrypting your\n"
-                    +  "journal, or press enter to use 1,000,000")
+                    +  "journal, or press enter to use 1,000,000\n-> ")
     if iterations == '':
         iterations = 1000000
-    print("P input your entry (press crtl-d twice on a newline when done)")
+    print("Please input your entry (press crtl-d twice on a newline when done)")
     entry = ''
     for line in fileinput.input():
         entry += line
-    if encrypted: #decrypt for writing
+    if encrypted: #decrypt for writing (journal existed before execution)
         print("Decrypting for appending")
-        encrypt.main(input_file, "d", iterations, "output")#an error here probably means it's a malformed file
-    with open(input_file, "a") as out:#append the entry
+        encrypt.main(location, "d", iterations, location + ".tmp")#an error here probably means it's a malformed file
+    with open(location + ".tmp", "a") as out:#append the entry
         out.write(time.strftime("%c") + "\n\n")
         out.write(entry + "\n")
+    input("If you would like to read your journal open the journal.tmp file, when done just press enter")
     print("Encrypting journal...(Please wait)")
-    encrypt.main(input_file, "e", iterations, location + ".tmp")#re-encrypt journal
-    os.remove(location)
-    move(location + ".tmp", location)#replace location(unencrypted) with location.tmp(encrypted)
+    encrypt.main(location + ".tmp", "e", iterations, location)#re-encrypt journal
+    os.remove(location + ".tmp")#delete tmp file
     print("Exiting...")
 
