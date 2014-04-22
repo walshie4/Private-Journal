@@ -16,5 +16,5 @@ although in most cases nothing bad will happen this is not guarenteed.
 * Then just follow the on-screen instructions
 
 ###References / Thanks
+* [Brendan Long's PyCrypto implementation](https://bitbucket.org/brendanlong/python-encryption)
 * [Kyle Isom's PyCrypto tutorial](http://kyleisom.net/downloads/crypto_intro.pdf)
-* [Daniel Miller's recipe for authenticated encryption](http://code.activestate.com/recipes/576980-authenticated-encryption-with-pycrypto/)
