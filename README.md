@@ -12,7 +12,7 @@ although in most cases nothing bad will happen this is not guarenteed.
 * [PyCrypto](https://www.dlitz.net/software/pycrypto/)
 
 ###How to use
-* Run using `python private_journal.py` or `python3 private_journal.py` on OS X
+* Run using `python private_journal.py` or `python3 private_journal.py` if on an OS X machine
 * Then just follow the on-screen instructions
 
 ###References / Thanks
