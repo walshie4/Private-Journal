@@ -40,7 +40,7 @@ if __name__ == "__main__":
         out.write(time.strftime("%c") + "\n\n")#add timestamp to entry
         out.write(entry + "\n")
     input("If you would like to read your journal open the journal.tmp file, when done just press enter")
-    print("Encrypting journal...(Please wait)")
+    print("Encrypting journal...(Please wait) using " + iterations + " iterations.")
     encrypt.main(location + ".tmp", "e", iterations, location)#re-encrypt journal
     os.remove(location + ".tmp")#delete tmp file
     print("Exiting...")
