@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 NAME=$1
-#check params
+#check for param
 if [[ -z "$NAME" ]]; then
     echo "Usage: privJournal <filename>"
     exit;
@@ -12,6 +12,6 @@ else
     echo "Creating journal."
     touch "$NAME"
 fi
-echo "Input entry now."
-CONTENT=$(cat)
-echo "$CONTENT" >> "$NAME"
+echo "Input journal password and entry."
+openssl des3 -salt -out "$NAME"
+openssl des3 -d -salt -in "$NAME"
